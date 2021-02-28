@@ -2,7 +2,8 @@
 sap.ui.define([
     'sap/ui/core/UIComponent',
     "logaligroup/SAPUI5/model/Models",
-    "sap/ui/model/resource/ResourceModel"
+    "sap/ui/model/resource/ResourceModel",
+    "./controller/HelloDialog"
 
 ],
 /**    
@@ -10,7 +11,7 @@ sap.ui.define([
  * @param {typeof sap.ui.model.resource.ResourceModel} ResourceModel
 */
 
-function(UIComponent, Models, ResourceModel) {
+function(UIComponent, Models, ResourceModel, HelloDialog) {
     'use strict';
 
     return UIComponent.extend("logaligroup.SAPUI5.Component",{
@@ -34,6 +35,19 @@ function(UIComponent, Models, ResourceModel) {
                 // asignacion i18n en la vista
                 var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
                 this.setModel(i18nModel, "i18n")
+
+                this._helloDialog = new HelloDialog(this.getRootControl());
+        },
+
+        exit: function () {
+            this._helloDialog.destoy();
+            delete this._helloDialog;          
+        },
+        //esta funcion es la que se invoca en los diferentes lugares para hacer uso del dialogo
+        openHelloDialog: function () {
+            //Funcion open que se creo en HelloDialog
+            this._helloDialog.open();
+            
         }
     });
     
