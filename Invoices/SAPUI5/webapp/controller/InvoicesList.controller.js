@@ -39,6 +39,16 @@ sap.ui.define([
                  const oBinding = oList.getBinding("items");
                  oBinding.filter(aFilter);
                  
+             },
+             navigateToDetails : function(oEvent){
+                 const oItem = oEvent.getSource();
+                 //Obtenemos las rutas que hay en manifest JSON
+                 const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                 //InvoicePath lo declaramos en el manifest nos permite pasar datos desde otra vista
+                oRouter.navTo("Details",{
+                    //substr(1) para quitar el primer "/"
+                    invoicePath : window.encodeURIComponent(oItem.getBindingContext("northwind").getPath().substr(1))
+                });
              }
          });
 

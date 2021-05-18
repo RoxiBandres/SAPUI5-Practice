@@ -33,10 +33,13 @@ function(UIComponent, Models, ResourceModel, HelloDialog) {
                 this.setModel(Models.createRecipient());
 
                 // asignacion i18n en la vista
-                var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
-                this.setModel(i18nModel, "i18n")
+                //var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
+                //this.setModel(i18nModel, "i18n")
 
                 this._helloDialog = new HelloDialog(this.getRootControl());
+
+                //Inicializamos las rutas desde las url.
+                this.getRouter().initialize();
         },
 
         exit: function () {
